@@ -8,4 +8,5 @@ notification.welcome("Привет");
 notification.bye("Пока");
 
 sum(4,5);
+sum(5,5);
 del(5,3);
