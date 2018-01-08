@@ -1,16 +1,29 @@
 let webpack = require('webpack');
-let path = require('path');
+const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const PATHS = {
+    source: path.join(__dirname, 'src'),
+    dist: path.join(__dirname, 'dist')
+};
 
 module.exports = {
-	entry: "./src/js/main.js",
+	entry: PATHS.source + "/main.js",
 	output: {
-		path: path.resolve(__dirname, "./dist/js"),
+		path: PATHS.dist,
 		filename: "bundle.js"
-        //publicPath: "./dist"
+        //publicPath: "/js"
     },
 	module: {
 		rules: [
+            {
+                test: /\.pug$/,
+                loader: "pug-loader",
+                options: {
+                    pretty: true
+                }
+            },
 			{
 				test: /\.css$/,
 				use: [
@@ -28,6 +41,12 @@ module.exports = {
     plugins: [
         new UglifyJsPlugin({
             parallel: true
-		})
-	]
+		}),
+        new HtmlWebpackPlugin({
+            template: PATHS.source + '/index.pug'
+        })
+	],
+    devServer: {
+	    hot: true
+    }
 };
