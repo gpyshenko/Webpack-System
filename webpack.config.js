@@ -9,10 +9,13 @@ const PATHS = {
 };
 
 module.exports = {
-	entry: PATHS.source + "/main.js",
+	entry: {
+		'index': PATHS.source + "/pages/index/index.js",
+        'blog': PATHS.source + "/pages/blog/blog.js"
+	},
 	output: {
 		path: PATHS.dist,
-		filename: "bundle.js"
+		filename: "[name].js"
         //publicPath: "/js"
     },
 	module: {
@@ -43,10 +46,18 @@ module.exports = {
             parallel: true
 		}),
         new HtmlWebpackPlugin({
-            template: PATHS.source + '/index.pug'
+            filename: 'index.html',
+            chunks: ['index'],
+            template: PATHS.source + '/pages/index/index.pug'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'blog.html',
+            chunks: ['blog'],
+            template: PATHS.source + '/pages/blog/blog.pug'
         })
 	],
     devServer: {
-	    hot: true
+	    hot: true,
+        stats: 'errors-only'
     }
 };
