@@ -1,10 +1,12 @@
-let webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJs = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const pug = require('./webpack/pug');
 const devserver = require('./webpack/devserver');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const images = require('./webpack/images');
 
 const PATHS = {
     source: path.join(__dirname, 'src'),
@@ -19,18 +21,21 @@ const common = merge([
         },
         output: {
             path: PATHS.dist,
-            filename: "[name].js"
+            filename: "js/[name].js"
             //publicPath: "/js"
         },
         module: {
             rules: [
                 {
                     test: /\.css$/,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        'postcss-loader'
-                    ]
+                    use: ExtractTextPlugin.extract({
+                        publicPath: '../',
+                        fallback: 'style-loader',
+                        use: [
+                            'css-loader',
+                            'postcss-loader'
+                        ]
+                    })
                 },
                 {
                     test: /\.js$/,
@@ -40,27 +45,34 @@ const common = merge([
             ]
         },
         plugins: [
-            new UglifyJsPlugin({
+            new UglifyJs({
                 parallel: true
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                chunks: ['index'],
+                chunks: ['index', 'common'],
                 template: PATHS.source + '/pages/index/index.pug'
             }),
             new HtmlWebpackPlugin({
                 filename: 'blog.html',
-                chunks: ['blog'],
+                chunks: ['blog', 'common'],
                 template: PATHS.source + '/pages/blog/blog.pug'
-            })
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+            }),
+            new ExtractTextPlugin('./css/[name].css')
         ]
     },
-    pug()
+    pug(),
+    images()
 ]);
 
 module.exports = function (env) {
     if(env === 'production') {
-        return common
+        return merge([
+            common
+        ])
     }
     if(env === 'development') {
         return merge([
