@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const pug = require('./webpack/pug');
+const css = require('./webpack/css');
 const devserver = require('./webpack/devserver');
 
 const PATHS = {
@@ -24,13 +25,6 @@ const common = merge([
         },
         module: {
             rules: [
-                {
-                    test: /\.css$/,
-                    use: [
-                        'style-loader',
-                        'css-loader'
-                    ]
-                },
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
@@ -54,7 +48,8 @@ const common = merge([
             })
         ]
     },
-    pug()
+    pug(),
+    css()
 ]);
 
 module.exports = function (env) {

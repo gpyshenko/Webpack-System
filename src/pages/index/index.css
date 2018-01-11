@@ -1,0 +1,10 @@
+:root {
+    --brandColor: red
+}
+.header {
+    display: flex;
+    &-row {
+        display: block;
+        color: var(--brandColor);
+    }
+}
