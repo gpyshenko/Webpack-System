@@ -22,7 +22,6 @@ const common = merge([
         output: {
             path: PATHS.dist,
             filename: "js/[name].js"
-            //publicPath: "/js"
         },
         module: {
             rules: [
@@ -76,7 +75,6 @@ module.exports = function (env) {
     }
     if(env === 'development') {
         return merge([
-
             common,
             devserver()
         ])
