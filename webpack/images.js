@@ -3,11 +3,16 @@ module.exports = function () {
         module: {
             rules: [
                 {
-                    test: /\.(jpg|png|svg)$/,
-                    loader: "file-loader",
-                    options: {
-                        name: 'images/[name].[ext]'
-                    }
+                    test: /\.(jpe?g|png|gif|svg|woff|woff2)$/,
+                    loaders: [
+                        {
+                            loader: "file-loader",
+                            options: {
+                                name: 'images/[name].[ext]'
+                            }
+                        },
+                        'img-loader'
+                    ]
                 }
             ]
         },
