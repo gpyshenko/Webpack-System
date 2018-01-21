@@ -1,0 +1,25 @@
+/*Main*/
+@import "/main/reset.css";
+@import "/main/variables.css";
+@import "/main/fonts.css";
+@import "/main/section.css";
+
+/*Blocks*/
+@import "/blocks/header/header.css";
+@import "/blocks/menu/menu.css";
+@import "/blocks/banner/banner.css";
+@import "/blocks/content/content.css";
+@import "/blocks/content/catalog.css";
+@import "/blocks/footer/footer.css";
+
+/*Components*/
+@import "/components/modals/modals.css";
+@import "/components/modals/shadow.css";
+@import "/components/modals/activeClass.css";
+@import "/components/breadcrumbs.css";
+@import "/components/product/product.css";
+@import "/components/pagination.css";
+@import "/components/input.css";
+
+
+

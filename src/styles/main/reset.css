@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent
+}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 14px;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 22px;
+    color: var(--textGray)
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+a, input, textarea, button {
+    outline: none
+}
+
+a {
+    display: inline-block;
+    color: var(--textGray);
+    text-decoration: none
+}
+
+
+button {
+    display: block;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer
+}

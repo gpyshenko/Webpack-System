@@ -1,0 +1,13 @@
+.quantity {
+	position: relative;
+	z-index: 2;
+	display: inline-block;
+	&::after {
+		content: attr(data-num-article);
+		position: absolute;
+		top: 0;
+		left: calc(100% + 10px);
+		font-size: 18px;
+		color: #b7b7b7
+	}
+}

@@ -1,0 +1,6 @@
+@font-face {
+	font-family: 'OpenSansCondensed';
+	src:
+		url('../assets/fonts/OpenSans Condensed Light/OpenSansCondensedLight.woff') format('woff'),
+	 	url('../assets/fonts/OpenSans Condensed Light/OpenSansCondensedLight.woff2') format('woff2')
+}

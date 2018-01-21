@@ -1,0 +1,93 @@
+/* Стили модального окна */
+.modal {
+    position: absolute;
+    top: 10vh;
+    left: calc(50% - 233px);
+    z-index: 999;
+    display: none;
+	width: 100%;
+	max-width: 466px;
+	padding: 35px 10px 26px;
+	background-color: #fff;
+	opacity: 0;
+	transform: translateY(20%);
+    transition: .6s;
+	&-close {
+		position: absolute;
+		bottom: 100%;
+		left: 100%;
+		width: 27px;
+		height: 27px;
+		background-color: var(--bgDarkgray);
+		transition: .2s;
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			top: calc(50% - .5px);
+			left: 10%;
+			width: 80%;
+			height: 1px;
+			background-color: #fff;
+		}
+		&::before {
+			transform: rotate(45deg)
+		}
+		&::after {
+			transform: rotate(-45deg)
+		}
+		&:hover {
+			opacity: .9;
+		}
+	}
+	&-content {
+		width: 100%;
+		max-width: 340px;
+        margin: 35px auto 0;
+		.formSubmit {
+			margin: 25px 0 15px
+		}
+	}
+	&-header {
+		display: block;
+		margin: 20px 0 30px;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: inherit;
+		text-align: center;
+        text-transform: uppercase;
+        color: #535353;
+	}
+	&-form {
+		.input {
+			margin-bottom: 18px
+		}
+	}
+}
+
+.btn-submit {
+    padding: 14px 17px;
+    margin: 0 auto;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var(--bgDarkgray);
+}
+
+@media (max-width: 568px) {
+    .modal {
+        &-close {
+            right: 0;
+            left: initial;
+        }
+    }
+}
+@media (max-width: 480px) {
+	.modal {
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+    }
+}

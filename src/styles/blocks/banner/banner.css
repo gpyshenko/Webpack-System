@@ -1,0 +1,43 @@
+.banner {
+    background-color: #f9f9f9;
+    .Wallop {
+        &-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &-item {
+            max-width: 1268px;
+            left: initial;
+        }
+    }
+    &-controls {
+        position: absolute;
+        top: 0;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        .section {
+            position: relative;
+            height: inherit;
+        }
+        button {
+            position: absolute;
+            top: calc(50% - 35.5px);
+            &:first-of-type {
+                left: 0;
+            }
+            &:last-of-type {
+                right: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 568px) {
+    .banner {
+        &-controls {
+            display: none;
+        }
+    }
+}

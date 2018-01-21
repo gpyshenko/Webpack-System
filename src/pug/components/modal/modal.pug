@@ -1,0 +1,26 @@
+.shadow
+.modal
+    button.modal-close
+
+    .modal-content
+        .modal-header
+            p Обратная связь
+        form.modal-form
+            .input
+                .input-title
+                    | Ваше имя
+                input
+            .input
+                .input-title
+                    | Телефон
+                input
+            .input.error
+                .input-title
+                    | Email
+                input(placeholder="Поле обязательно для заполнения")
+            .input
+                .input-title
+                    | Сообщение
+                textarea
+            button.btn-submit
+                | ОТПРАВИТЬ

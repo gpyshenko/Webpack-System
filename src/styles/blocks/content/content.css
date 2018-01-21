@@ -1,0 +1,53 @@
+.content {
+    display: flex;
+}
+.aside {
+    width: 100%;
+    max-width: 200px;
+    &-documents {
+        margin-top: 110px;
+        &-img {
+            img {
+                margin: 0 auto;
+            }
+        }
+        &-text {
+            font-size: 30px;
+            font-family: inherit;
+            font-weight: 700;
+            line-height: 25px;
+            text-align: center;
+            color: #444444;
+        }
+    }
+
+}
+.acc {
+    &-head {
+        font-size: 18px;
+        line-height: 30px;
+        cursor: pointer;
+        &-active {
+            text-decoration: underline;
+            & + .acc-content {
+                display: block;
+            }
+        }
+    }
+    &-content {
+        display: none;
+        margin-left: 20px;
+    }
+    a.active {
+        text-decoration: underline;
+        color: #010101;
+    }
+}
+
+
+
+@media (max-width: 568px) {
+    .content {
+        display: block;
+    }
+}

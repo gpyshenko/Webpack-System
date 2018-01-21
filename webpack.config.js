@@ -7,6 +7,7 @@ const pug = require('./webpack/pug');
 const devserver = require('./webpack/devserver');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const images = require('./webpack/images');
+const fonts = require('./webpack/fonts');
 
 const PATHS = {
     source: path.join(__dirname, 'src'),
@@ -16,8 +17,7 @@ const PATHS = {
 const common = merge([
     {
         entry: {
-            'index': PATHS.source + "/pages/index/index.js",
-            'blog': PATHS.source + "/pages/blog/blog.js"
+            'main': PATHS.source + "/js/main.js"
         },
         output: {
             path: PATHS.dist,
@@ -49,13 +49,8 @@ const common = merge([
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                chunks: ['index', 'common'],
-                template: PATHS.source + '/pages/index/index.pug'
-            }),
-            new HtmlWebpackPlugin({
-                filename: 'blog.html',
-                chunks: ['blog', 'common'],
-                template: PATHS.source + '/pages/blog/blog.pug'
+                //chunks: ['common'],
+                template: PATHS.source + '/pug/pages/index/index.pug'
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common'
@@ -64,7 +59,8 @@ const common = merge([
         ]
     },
     pug(),
-    images()
+    images(),
+    fonts()
 ]);
 
 module.exports = function (env) {

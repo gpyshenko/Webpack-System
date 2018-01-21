@@ -3,16 +3,14 @@ module.exports = function () {
         module: {
             rules: [
                 {
-                    test: /\.(jpe?g|png|gif|svg)$/,
+                    test: /\.(woff|woff2)$/,
                     use: [
                         {
-                            loader: "url-loader",
+                            loader: 'file-loader',
                             options: {
-                                limit: 10000,
-                                name: 'images/[name].[ext]'
+                                name: 'fonts/[name].[ext]'
                             }
-                        },
-                        'img-loader'
+                        }
                     ]
                 }
             ]

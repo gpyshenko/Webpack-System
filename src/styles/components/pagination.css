@@ -1,0 +1,18 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	width: 100%;
+	margin-top: 12px;
+	&-link {
+        margin: 0 10px;
+		&:hover {
+			color: #444444
+		}
+		&.current {
+            font-size: 18px;
+			color: #444444;
+		}
+	}
+
+}

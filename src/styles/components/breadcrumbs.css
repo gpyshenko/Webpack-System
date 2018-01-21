@@ -1,0 +1,34 @@
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+	margin: 10px 0 28px;
+	&-links {
+		position: relative;
+		display: inline-block;
+		margin-right: 18px;
+        font-family: inherit;
+		color: var(--textGray);
+		text-decoration: underline;
+		&::after {
+			content: '/';
+			position: absolute;
+			right: -10px;
+			color: var(--textGray)
+		}
+		&:last-child {
+			text-decoration: none;
+			&::after {
+				content: ''
+			}
+		}
+		&:hover {
+			text-decoration: none
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	.breadcrumbs {
+		display: none
+	}
+}
