@@ -52,9 +52,9 @@ const common = merge([
                 //chunks: ['common'],
                 template: PATHS.source + '/pug/pages/index/index.pug'
             }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'common'
-            }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: 'common'
+            // }),
             new ExtractTextPlugin('./css/[name].css')
         ]
     },
