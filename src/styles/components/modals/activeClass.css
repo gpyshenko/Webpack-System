@@ -1,5 +1,0 @@
-/* Класс активного модального окна */
-.modalActive {
-    opacity: 1;
-    transform: translateY(0%)
-}

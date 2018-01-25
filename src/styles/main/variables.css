@@ -1,6 +1,3 @@
 :root {
-    --bgGray: #dcdcdc;
-    --bgDarkgray: #777777;
-    --textGray: #767676;
-    --OpenSans: 'OpenSansCondensed', sans-serif;
+    --black: #000;
 }
