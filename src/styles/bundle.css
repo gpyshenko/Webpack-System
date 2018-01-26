@@ -1,12 +1,13 @@
 /* Main */
-@import "/main/variables.css";
-@import "/main/reset.css";
-@import "/main/section.css";
+@import "started/variables.css";
+@import "started/reset.css";
+@import "started/section.css";
 
 /* Vendor */
 
-/* Blocks */
 
+/* Blocks */
+@import "started/greeting.css";
 
 /* Components */
 
