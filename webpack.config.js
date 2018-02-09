@@ -8,7 +8,6 @@ const devserver = require('./webpack/devserver');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const images = require('./webpack/images');
 const fonts = require('./webpack/fonts');
-
 const PATHS = {
     source: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist')
@@ -25,22 +24,7 @@ const common = merge([
         },
         module: {
             rules: [
-                {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        publicPath: '../',
-                        fallback: 'style-loader',
-                        use: [
-                            'css-loader',
-                            'postcss-loader'
-                        ]
-                    })
-                },
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader"
-                }
+
             ]
         },
         plugins: [
@@ -49,13 +33,8 @@ const common = merge([
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                //chunks: ['common'],
                 template: PATHS.source + '/pug/pages/index/index.pug'
-            }),
-            // new webpack.optimize.CommonsChunkPlugin({
-            //     name: 'common'
-            // }),
-            new ExtractTextPlugin('./css/[name].css')
+            })
         ]
     },
     pug(),
@@ -64,15 +43,65 @@ const common = merge([
 ]);
 
 module.exports = function (env) {
-    if(env === 'production') {
-        return merge([
-            common
-        ])
-    }
     if(env === 'development') {
         return merge([
             common,
+            {
+                module: {
+                    rules: [
+                        {
+                            test: /\.css$/,
+                            use: [
+                                'style-loader',
+                                'css-loader',
+                                "postcss-loader"
+
+                            ]
+
+                        }
+                    ]
+                }
+            },
             devserver()
         ])
     }
+    if(env === 'production') {
+        return merge([
+            common,
+            {
+                module: {
+                    rules: [
+                        {
+                            test: /\.css$/,
+                            use: ExtractTextPlugin.extract({
+                                publicPath: '../',
+                                fallback: 'style-loader',
+                                use: [
+                                    {
+                                        loader: 'css-loader',
+                                        options: {
+                                            minimize: true
+                                        }
+                                    },
+                                    "postcss-loader"
+                                ]
+                            })
+                        },
+                        {
+                            test: /\.js$/,
+                            exclude: /node_modules/,
+                            loader: "babel-loader"
+                        }
+                    ]
+                },
+                plugins: [
+                    new UglifyJs({
+                        parallel: true
+                    }),
+                    new ExtractTextPlugin('./css/[name].css')
+                ]
+            }
+        ])
+    }
+
 };
