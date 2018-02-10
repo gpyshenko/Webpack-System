@@ -1,18 +1,25 @@
 const webpack = require('webpack');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJs = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const pug = require('./webpack/pug');
 const devserver = require('./webpack/devserver');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const images = require('./webpack/images');
-const fonts = require('./webpack/fonts');
+const images = require('./webpack/production/images');
+const fonts = require('./webpack/production/fonts');
+
 const PATHS = {
     source: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist')
 };
+let cleanOptions = {
+    root: __dirname,
+    verbose: true,
+    dry: false,
 
+};
 const common = merge([
     {
         entry: {
@@ -28,18 +35,13 @@ const common = merge([
             ]
         },
         plugins: [
-            new UglifyJs({
-                parallel: true
-            }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: PATHS.source + '/pug/pages/index/index.pug'
             })
         ]
     },
-    pug(),
-    images(),
-    fonts()
+    pug()
 ]);
 
 module.exports = function (env) {
@@ -58,6 +60,10 @@ module.exports = function (env) {
 
                             ]
 
+                        },
+                        {
+                            test: /\.(jpe?g|png|gif|svg|woff|woff2)$/,
+                            use: ['file-loader']
                         }
                     ]
                 }
@@ -95,12 +101,15 @@ module.exports = function (env) {
                     ]
                 },
                 plugins: [
+                    new CleanWebpackPlugin(['/dist']),
                     new UglifyJs({
                         parallel: true
                     }),
                     new ExtractTextPlugin('./css/[name].css')
                 ]
-            }
+            },
+            images(),
+            fonts()
         ])
     }
 
