@@ -95,7 +95,7 @@ module.exports = function (env) {
                     ]
                 },
                 plugins: [
-                    new CleanWebpackPlugin([PATHS.dist]),
+                    new CleanWebpackPlugin(['dist']),
                     new UglifyJs({
                         parallel: true
                     }),
