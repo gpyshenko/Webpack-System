@@ -14,12 +14,6 @@ const PATHS = {
     source: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist')
 };
-let cleanOptions = {
-    root: __dirname,
-    verbose: true,
-    dry: false,
-
-};
 const common = merge([
     {
         entry: {
@@ -101,7 +95,7 @@ module.exports = function (env) {
                     ]
                 },
                 plugins: [
-                    new CleanWebpackPlugin(['/dist']),
+                    new CleanWebpackPlugin([PATHS.dist]),
                     new UglifyJs({
                         parallel: true
                     }),
