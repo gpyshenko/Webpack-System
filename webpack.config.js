@@ -60,7 +60,10 @@ module.exports = function (env) {
                             use: ['file-loader']
                         }
                     ]
-                }
+                },
+                plugins: [
+
+                ]
             },
             devserver()
         ])

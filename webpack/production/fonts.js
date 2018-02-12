@@ -8,6 +8,7 @@ module.exports = function () {
                         {
                             loader: 'file-loader',
                             options: {
+                                outputPath: 'assets/',
                                 name: 'fonts/[name].[ext]'
                             }
                         }

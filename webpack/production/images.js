@@ -8,6 +8,7 @@ module.exports = function () {
                         {
                             loader: "url-loader",
                             options: {
+                                outputPath: 'assets/',
                                 limit: 10000,
                                 name: 'images/[name].[ext]'
                             }
