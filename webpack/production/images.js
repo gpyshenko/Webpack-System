@@ -6,14 +6,14 @@ module.exports = function () {
                     test: /\.(jpe?g|png|gif|svg)$/,
                     use: [
                         {
-                            loader: "url-loader",
+                            loader: require.resolve("url-loader"),
                             options: {
                                 outputPath: 'assets/',
                                 limit: 10000,
                                 name: 'images/[name].[ext]'
                             }
                         },
-                        'img-loader'
+                        require.resolve('img-loader')
                     ]
                 }
             ]

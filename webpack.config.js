@@ -48,16 +48,15 @@ module.exports = function (env) {
                         {
                             test: /\.css$/,
                             use: [
-                                'style-loader',
-                                'css-loader',
-                                "postcss-loader"
-
+                                require.resolve('style-loader'),
+                                require.resolve('css-loader'),
+                                require.resolve("postcss-loader")
                             ]
 
                         },
                         {
                             test: /\.(jpe?g|png|gif|svg|woff|woff2)$/,
-                            use: ['file-loader']
+                            use: [require.resolve('file-loader')]
                         }
                     ]
                 },
@@ -78,22 +77,22 @@ module.exports = function (env) {
                             test: /\.css$/,
                             use: ExtractTextPlugin.extract({
                                 publicPath: '../',
-                                fallback: 'style-loader',
+                                fallback: require.resolve('style-loader'),
                                 use: [
                                     {
-                                        loader: 'css-loader',
+                                        loader: require.resolve('css-loader'),
                                         options: {
                                             minimize: true
                                         }
                                     },
-                                    "postcss-loader"
+                                    require.resolve("postcss-loader")
                                 ]
                             })
                         },
                         {
                             test: /\.js$/,
                             exclude: /node_modules/,
-                            loader: "babel-loader"
+                            loader: require.resolve("babel-loader")
                         }
                     ]
                 },

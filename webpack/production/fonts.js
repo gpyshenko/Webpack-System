@@ -6,7 +6,7 @@ module.exports = function () {
                     test: /\.(woff|woff2)$/,
                     use: [
                         {
-                            loader: 'file-loader',
+                            loader: require.resolve('file-loader'),
                             options: {
                                 outputPath: 'assets/',
                                 name: 'fonts/[name].[ext]'
